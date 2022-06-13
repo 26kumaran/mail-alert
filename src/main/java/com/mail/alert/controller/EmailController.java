@@ -51,7 +51,6 @@ public class EmailController {
                 "<td style='border: 1px solid black;border-collapse: collapse;'>2022</td>" +
                 "</tr>" +
                 "</table>", true);
-        // hard coded a file path
         //FileSystemResource file = new FileSystemResource(new File("src/main/resources/pic.jpeg"));
         //helper.addInline("identifier1234", new ClassPathResource("images/pic.jpeg"));
         //helper.addAttachment("pic_new.jpeg", new ClassPathResource("images/pic.jpeg"));
