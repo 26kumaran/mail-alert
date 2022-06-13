@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-import java.io.IOException;
 
 @RestController
 public class EmailController {
@@ -24,8 +23,8 @@ public class EmailController {
     void sendEmail() {
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("2606kumaran@gmail.com");
-        String[] mailList = {"2606kumaran@gmail.com", "tcshd.kumaran@gmail.com"};
+        message.setFrom("xxxx@gmail.com");
+        String[] mailList = {"xxxx@gmail.com", "tcshd.kumaran@gmail.com"};
         message.setTo(mailList);
         message.setText("This is the test mail");
         message.setSubject("Mail Test");
@@ -34,13 +33,12 @@ public class EmailController {
     }
 
     @RequestMapping(value = "/sendEmailAttachment")
-    void sendEmailWithAttachment() throws MessagingException, IOException {
+    void sendEmailWithAttachment() throws MessagingException {
 
         MimeMessage msg = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(msg, true);
-        helper.setTo("2606kumaran@gmail.com");
-        helper.setSubject("Testing from Spring Boot");
-        helper.setText("Check attachment for image!");
+        helper.setTo("xxxx@gmail.com");
+        helper.setSubject("Testing mail alert");
         helper.setText("<table style='width:70%;border: 1px solid black;border-collapse: collapse;'>" +
                 "<tr style='background-color: lightblue;'>" +
                 "<th style='border: 1px solid black;border-collapse: collapse;'>Code</th>" +
@@ -51,10 +49,10 @@ public class EmailController {
                 "<td style='border: 1px solid black;border-collapse: collapse;'>2022</td>" +
                 "</tr>" +
                 "</table>", true);
-        //FileSystemResource file = new FileSystemResource(new File("src/main/resources/pic.jpeg"));
-        //helper.addInline("identifier1234", new ClassPathResource("images/pic.jpeg"));
-        //helper.addAttachment("pic_new.jpeg", new ClassPathResource("images/pic.jpeg"));
-        //helper.addAttachment("pic_neww.jpeg", file);
+        /* Possibilities to point a file */
+        //FileSystemResource file = new FileSystemResource(new File("src/main/resources/picture.jpeg"));
+        //helper.addInline("id1", new ClassPathResource("images/pic.jpeg")); //which points to the resource folder
+        //helper.addAttachment("picture.jpeg", file);
         javaMailSender.send(msg);
 
     }
